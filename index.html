@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+    <title>Pasukan Ubi Ungu</title>
+    <link rel="icon" type="image/png" href="assets/image/logo-txt.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <style>
+    :root {
+      --primary: #ad84db;
+      --dark: #5e3a87;
+      --bg: #f6f1fb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+    scroll-behavior: smooth;
+    }
+
+    a {
+    text-decoration: none;
+    color: inherit;
+    }
+
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: #333;
+    }
+
+    /* navbar logo */
+    .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    }
+
+    .logo img {
+     width: auto;
+    height: 65px;    
+    max-height: 100%; 
+    }
+
+    .logo span {
+    line-height: 1;
+    }
+
+    /* batas navbar logo */
+
+    /* NAVBAR */
+    nav {
+    background: var(--primary);
+    padding: 0 20px;        
+    height: 64px;           
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      margin-left: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* BANNER */
+    .banner {
+      min-height: 100vh;
+      height: 100svh;
+      background:
+        linear-gradient(rgba(173,132,219,0.6), rgba(173,132,219,0.6)),
+        url("https://pbs.twimg.com/media/G4hUP_8bgAAREQp?format=jpg&name=4096x4096");
+      background-size: cover;
+      background-position: center 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .banner h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .banner p {
+      font-size: 18px;
+      max-width: 600px;
+    }
+
+    /* SECTION GLOBAL */
+    section {
+        scroll-margin-top: 70px;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section-white {
+      background: white;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    h2 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    /* HOME */
+    .home-intro {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .home-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .home-media {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .home-media img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .home-media:hover img {
+      transform: scale(1.04);
+    }
+
+    /* GRADIENT PUTIH */
+    .home-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0) 70%,
+        rgba(255,255,255,1) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* CARD PERKENALAN */
+    .home-card {
+    background: #ffffff;
+    padding: 40px 35px;
+    border-left: 6px solid var(--primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    }
+
+    .home-card h3 {
+    margin: 0 0 15px;
+    font-size: 26px;
+    color: var(--dark);
+    letter-spacing: 1px;
+    }
+
+    .home-card .quote {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #444;
+    font-style: italic;
+    }
+
+
+    /*batas home*/
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: var(--primary);
+        width: 100%;
+        flex-direction: column;
+        display: none;
+      }
+
+      .nav-links li {
+        margin: 15px 0;
+        text-align: center;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .banner h1 {
+        font-size: 30px;
+      }
+
+      .home-grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .home-media img {
+        height: 260px;
+      }
+    }
+
+
+    /*ABOUT US*/
+
+    /* ABOUT SOCIAL GRID */
+    .about-social {
+    margin-top: 45px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    }
+
+    .social-card {
+    background: linear-gradient(
+        180deg,
+        rgba(173,132,219,0.08),
+        rgba(255,255,255,1)
+    );
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 14px;
+    transition: all 0.35s ease;
+    }
+
+    .social-card h4 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--dark);
+    }
+
+    .social-card .username {
+    margin: 6px 0 14px;
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: bold;
+    }
+
+    .social-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    }
+
+    /* CARD YANG BISA DIKLIK */
+    .social-card.link {
+    cursor: pointer;
+    }
+
+    .social-card.link:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    }
+
+    /* ICON */
+    .social-icon {
+    font-size: 34px;
+    margin-bottom: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+    .about-social {
+        grid-template-columns: 1fr;
+    }
+    }
+    /*BATAS ABOUT US*/
+
+    /*KEGIATAN*/
+    #kegiatan {
+    padding: 80px 0;
+    background: var(--bg);
+    }
+
+    .slider {
+    position: relative;
+    max-width: 900px;
+    margin: 40px auto 0;
+    overflow: hidden;
+    border-radius: 16px;
+    }
+
+    .slides {
+    position: relative;
+    height: 450px;
+    }
+
+    .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    }
+
+    .slide.active {
+    opacity: 1;
+    z-index: 1;
+    }
+
+    .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .slider-toggle {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    backdrop-filter: blur(6px);
+    transition: background 0.3s ease, transform 0.2s ease;
+    z-index: 5;
+    }
+
+    .slider-toggle:hover {
+    background: rgba(0,0,0,0.8);
+    transform: scale(1.05);
+    }
+
+
+    /* Caption kiri bawah */
+    .caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 12px 18px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 16px;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+    .slides {
+        height: 260px;
+    }
+
+    .caption {
+        font-size: 14px;
+    }
+    }
+
+    /* NAVIGATION BUTTON */
+    .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.55);
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: all 0.25s ease;
+    z-index: 5;
+    }
+
+    .nav:hover {
+    background: rgba(0,0,0,0.85);
+    transform: translateY(-50%) scale(1.1);
+    }
+
+    .nav.prev {
+    left: 18px;
+    }
+
+    .nav.next {
+    right: 18px;
+    }
+
+
+
+    /*BATAS KEGIATAN*/
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #666;
+      font-size: 14px;
+      background: var(--bg);
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+  <img src="assets/image/logo-txt.png" alt="Logo">
+  <span>Pasukan Ubi Ungu</span>
+</div>
+
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#kegiatan">KEGIATAN</a></li>
+    <li><a href="#about">ABOUT US</a></li>
+     <li><a href="#gallery">GALERY</a></li>
+    
+  </ul>
+
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</nav>
+
+<!-- BANNER -->
+<div class="banner">
+  <div>
+    <h1>Pasukan Ubi Ungu 😈</h1>
+    <p>
+      #HidupUngu 
+    </p>
+  </div>
+</div>
+
+<!-- HOME -->
+<section id="home" class="section-white">
+  <div class="container">
+
+    <div class="home-grid-2">
+      <div class="home-media">
+        <img src="assets/image/foto-us.png" alt="Pasukan Ubi Ungu">
+      </div>
+
+      <div class="home-card">
+        <h3>Pasukan Ubi Ungu 😈</h3>
+        <p class="quote">
+            “Indonesia Negara Negara Hukum…<br>
+            Assalamualaikum”
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- KEGIATAN -->
+<section id="kegiatan">
+  <div class="container">
+    <h2>KEGIATAN</h2>
+
+    <div class="slider">
+      <div class="slides">
+
+        <div class="slide active">
+          <img src="assets/image/Kegiatan-1.jpg" alt="Gathering">
+          <div class="caption">Cover lagu : Mantra Hujan</div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/image/Kegiatan-2.jpg" alt="Gathering">
+          <div class="caption">Release lagu : Berhenti Sejenak</div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/image/Kegiatan-3.jpg" alt="Gathering">
+          <div class="caption">Berbagi Cheese Cake (Ultah lily ke-18)</div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/image/Kegiatan-4.jpg" alt="Gathering">
+          <div class="caption">Release Merch.VoL 1 : Jersey #Violetta</div>
+        </div>
+
+
+      </div>
+
+      <button class="nav prev" onclick="prevSlide()">‹</button>
+      <button class="nav next" onclick="nextSlide()">›</button>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about" class="section-white">
+  <div class="container">
+    <h2>ABOUT US</h2>
+    <p style="text-align:center">
+      Salam Interaksi 😈
+    </p>
+
+    <div class="about-social">
+
+      <!-- X -->
+      <a href="https://x.com/PasukanUbiUngu" target="_blank" class="social-card link">
+        <div class="social-icon">𝕏</div>
+        <h4>X/Twitter</h4>
+        <div class="username">@PasukanUbiUngu</div>
+      </a>
+
+      <!-- TIKTOK -->
+      <a href="https://www.tiktok.com/@pasukanubiungu_" target="_blank" class="social-card link">
+        <div class="social-icon">🎵</div>
+        <h4>TikTok</h4>
+        <div class="username">@pasukanubiungu_</div>
+      </a>
+
+      <!-- LINE -->
+     <a href="https://line.me/ti/p/pasukanubiungu" target="_blank" class="social-card link">
+        <div class="social-icon">💬</div>
+        <h4>LINE</h4>
+        <div class="username">@pasukanubiungu</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="galery">
+  <div class="container">
+    <h2>GALLERY</h2>
+    <p style="text-align:center">
+      COMING SOON ... 👀
+    </p>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Pasukan Ubi Ungu | Made with 💜 (dibaca : Love sampe mati)
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+  }
+
+  
+
+    function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+    }
+
+    function prevSlide() {
+        current = (current - 1 + slides.length) % slides.length;
+        showSlide(current);
+    }
+
+
+</script>
+
+</body>
+</html>
