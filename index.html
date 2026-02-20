@@ -97,7 +97,7 @@
     .timeline__content-desc a { color: #ad84db; font-weight: bold; } /* Membuat link di deskripsi timeline terlihat */
     .timeline:before { position: absolute; left: 50%; width: 2px; height: 100%; margin-left: -1px; content: ""; background: rgba(255, 255, 255, 0.07); }
     .timeline-item { padding: 40px 0; /* opacity: 0.3;  filter: blur(2px); */ transition: 0.5s; box-sizing: border-box; width: calc(50% - 40px); display: flex; position: relative; /*transform: translateY(-80px);*/ text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); }
-    .timeline-item:before { content: attr(data-text); letter-spacing: 3px; width: 100%; position: absolute; color: rgba(255, 255, 255, 0.5); font-size: 13px; font-family: "Pathway Gothic One", sans-serif; border-left: 2px solid rgba(255, 255, 255, 0.5); top: 70%; margin-top: -5px; padding-left: 15px; opacity: 0; right: calc(-100% - 56px); }
+    .timeline-item:before { content: attr(data-text); letter-spacing: 3px; width: 100%; position: absolute; color: rgba(255, 255, 255, 0.5); font-size: 13px; font-family: "Pathway Gothic One", sans-serif; border-left: 2px solid rgba(255, 255, 255, 0.5); top: 70%; margin-top: -5px; padding-left: 15px; /*opacity: 0;*/ right: calc(-100% - 56px); }
     .timeline-item:nth-child(even) { align-self: flex-end; }
     .timeline-item:nth-child(even):before { right: auto; text-align: right; left: calc(-100% - 56px); padding-left: 0; border-left: none; border-right: 2px solid rgba(255, 255, 255, 0.5); padding-right: 15px; }
     .timeline-item--active { opacity: 1; transform: translateY(0); filter: blur(0px); }
