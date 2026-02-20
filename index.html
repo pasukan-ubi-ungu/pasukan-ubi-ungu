@@ -6,84 +6,17 @@
   <link rel="icon" type="image/png" href="assets/image/logo-txt.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Tambahan font untuk Timeline */
+    /* Google Fonts */
     @import url("https://fonts.googleapis.com/css?family=Cardo|Pathway+Gothic+One");
 
-
-    a {
-      color: #ad84db; 
-      text-decoration: none;
-      transition: color 0.3s ease; 
-    }
-
-    a:hover {
-      color: black; 
-      text-decoration: underline; 
-    }
-
+    /* Variabel Warna */
     :root {
       --primary: #ad84db;
       --dark: #5e3a87;
       --bg: #f6f1fb;
     }
-    /* === CSS LENGKAP UNTUK PRELOADER === */
-    #preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-color: var(--dark);
-      background-image: linear-gradient(to bottom right, var(--primary), var(--dark));
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.75s ease-out;
-      overflow: hidden;
-    }
-    .preloader-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-    #preloader img {
-      max-width: 200px;
-      animation: fadeIn 1s ease-in-out, pulse 2s infinite ease-in-out 1s;
-    }
-    .preloader-text {
-      color: #fff;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1.5rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-top: 20px;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 2px solid rgba(255, 255, 255, 0.75);
-      width: 0;
-      animation:
-        typing 2s steps(13, end) 1.5s forwards,
-        blink-cursor .75s step-end infinite;
-    }
-    .police-tape {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      opacity: 0.15;
-      background: repeating-linear-gradient(45deg, var(--dark), var(--dark) 20px, var(--primary) 20px, var(--primary) 40px);
-      animation: scroll-tape 3s linear infinite;
-    }
-    .preloader-hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-    @keyframes scroll-tape { from { background-position: 0 0; } to { background-position: -57px 0; } }
-    @keyframes typing { from { width: 0 } to { width: 100% } }
-    @keyframes blink-cursor { from, to { border-color: transparent } 50% { border-color: rgba(255, 255, 255, 0.75); } }
-    /* === BATAS CSS PRELOADER === */
+
+    /* Pengaturan Dasar & Gaya Link Global */
     * {
       box-sizing: border-box;
     }
@@ -96,475 +29,119 @@
       background: var(--bg);
       color: #333;
     }
+    /* Aturan umum untuk link, warna default putih (cocok untuk nav dan banner) */
     a {
+      color: white; 
       text-decoration: none;
-      color: inherit;
+      transition: color 0.3s ease; 
     }
-    nav {
-      background: var(--primary);
-      padding: 0 20px;
-      height: 64px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-    }
-    .logo img {
-      width: auto;
-      height: 65px;
-      max-height: 100%;
-    }
-    .logo span {
-      line-height: 1;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-    }
-    .nav-links li {
-      margin-left: 20px;
-    }
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
-    .hamburger {
-      display: none;
-      font-size: 26px;
-      color: white;
-      cursor: pointer;
-    }
-    .banner {
-      min-height: 100vh;
-      height: 100svh;
-      background:
-        linear-gradient(rgba(173,132,219,0.6), rgba(173,132,219,0.6)),
-        url("https://pbs.twimg.com/media/G4hUP_8bgAAREQp?format=jpg&name=4096x4096");
-      background-size: cover;
-      background-position: center 10%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      padding: 20px;
-    }
-    .banner h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
-    .banner p {
-      font-size: 18px;
-      max-width: 600px;
-    }
-    section {
-      scroll-margin-top: 70px;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    .section-white {
-      background: white;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 80px 20px;
-    }
-    h2 {
-      color: var(--primary);
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    .home-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      align-items: center;
-    }
-    .home-media {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-    }
-    .home-media img {
-      width: 100%;
-      height: 360px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s ease;
-    }
-    .home-media:hover img {
-      transform: scale(1.04);
-    }
-    .home-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(255,255,255,0) 70%,
-        rgba(255,255,255,1) 100%
-      );
-      pointer-events: none;
-    }
-    .home-card {
-      background: #ffffff;
-      padding: 40px 35px;
-      border-left: 6px solid var(--primary);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .home-card h3 {
-      margin: 0 0 15px;
-      font-size: 26px;
-      color: var(--dark);
-      letter-spacing: 1px;
-    }
-    .home-card .quote {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #444;
-      font-style: italic;
-    }
-    #kegiatan {
-      padding: 80px 0;
-      background: var(--bg);
-    }
-    .slider {
-      position: relative;
-      max-width: 900px;
-      margin: 40px auto 0;
-      overflow: hidden;
-      border-radius: 16px;
-    }
-    .slides {
-      position: relative;
-      height: 450px;
-    }
-    .slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    .slide.active {
-      opacity: 1;
-      z-index: 1;
-    }
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .caption {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      padding: 12px 18px;
-      background: rgba(0,0,0,0.55);
-      color: #fff;
-      font-size: 16px;
-      border-radius: 10px;
-      backdrop-filter: blur(6px);
-    }
-    .nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(0,0,0,0.55);
-      color: white;
-      font-size: 26px;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-      transition: all 0.25s ease;
-      z-index: 5;
-    }
-    .nav:hover {
-      background: rgba(0,0,0,0.85);
-      transform: translateY(-50%) scale(1.1);
-    }
-    .nav.prev {
-      left: 18px;
-    }
-    .nav.next {
-      right: 18px;
-    }
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #666;
-      font-size: 14px;
-      background: var(--bg);
+    a:hover {
+      /* color: orange;  */
+      text-decoration: underline; 
     }
     
-    /* === MULAI CSS TIMELINE === */
-    .timeline {
-        display: flex;
-        margin: 0 auto;
-        flex-wrap: wrap;
-        flex-direction: column;
-        max-width: 700px;
-        position: relative;
-    }
-    .timeline__content-title {
-        font-weight: normal;
-        font-size: 66px;
-        margin: -10px 0 0 0;
-        transition: 0.4s;
-        padding: 0 10px;
-        box-sizing: border-box;
-        font-family: "Pathway Gothic One", sans-serif;
-        color: #fff;
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-    }
-    .timeline__content-desc {
-        margin: 0;
-        font-size: 15px;
-        box-sizing: border-box;
-        color: rgba(255, 255, 255, 0.7);
-        font-family: Cardo, serif;
-        font-weight: normal;
-        line-height: 25px;
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-    }
-    .timeline:before {
-        position: absolute;
-        left: 50%;
-        width: 2px;
-        height: 100%;
-        margin-left: -1px;
-        content: "";
-        background: rgba(255, 255, 255, 0.07);
-    }
-    .timeline-item {
-        padding: 40px 0;
-        opacity: 0.3;
-        filter: blur(2px);
-        transition: 0.5s;
-        box-sizing: border-box;
-        width: calc(50% - 40px);
-        display: flex;
-        position: relative;
-        transform: translateY(-80px);
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-    }
-    .timeline-item:before {
-        content: attr(data-text);
-        letter-spacing: 3px;
-        width: 100%;
-        position: absolute;
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 13px;
-        font-family: "Pathway Gothic One", sans-serif;
-        border-left: 2px solid rgba(255, 255, 255, 0.5);
-        top: 70%;
-        margin-top: -5px;
-        padding-left: 15px;
-        opacity: 0;
-        right: calc(-100% - 56px);
-    }
-    .timeline-item:nth-child(even) {
-        align-self: flex-end;
-    }
-    .timeline-item:nth-child(even):before {
-        right: auto;
-        text-align: right;
-        left: calc(-100% - 56px);
-        padding-left: 0;
-        border-left: none;
-        border-right: 2px solid rgba(255, 255, 255, 0.5);
-        padding-right: 15px;
-    }
-    .timeline-item--active {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0px);
-    }
-    .timeline-item--active:before {
-        top: 50%;
-        transition: 0.3s all 0.2s;
-        opacity: 1;
-    }
-    .timeline-item--active .timeline__content-title {
-        margin: -50px 0 20px 0;
-    }
-    .timeline__img {
-        max-width: 100%;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
-        cursor: pointer; /* Menambahkan cursor pointer */
-        transition: transform 0.3s ease;
-    }
-    .timeline__img:hover {
-        transform: scale(1.05); /* Efek hover kecil */
-    }
-    .timeline-container {
-        width: 100%;
-        position: relative;
-        padding: 80px 0;
-        transition: 0.3s ease 0s;
-        background-attachment: fixed;
-        background-size: cover;
-    }
-    .timeline-container:before {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(99, 99, 99, 0.8);
-        content: "";
-    }
-    .timeline-header {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 80px;
-        position: relative;
-    }
-    .timeline-header__title {
-        color: #fff;
-        font-size: 46px;
-        font-family: Cardo, serif;
-        font-weight: normal;
-        margin: 0;
-    }
-    .timeline-header__subtitle {
-        color: rgba(255, 255, 255, 0.5);
-        font-family: "Pathway Gothic One", sans-serif;
-        font-size: 16px;
-        letter-spacing: 5px;
-        margin: 10px 0 0 0;
-        font-weight: normal;
-    }
-    /* === SELESAI CSS TIMELINE === */
+    /* Preloader */
+    #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: var(--dark); background-image: linear-gradient(to bottom right, var(--primary), var(--dark)); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.75s ease-out; overflow: hidden; }
+    .preloader-content { position: relative; z-index: 2; text-align: center; }
+    #preloader img { max-width: 200px; animation: fadeIn 1s ease-in-out, pulse 2s infinite ease-in-out 1s; }
+    .preloader-text { color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 1.5rem; letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; overflow: hidden; white-space: nowrap; border-right: 2px solid rgba(255, 255, 255, 0.75); width: 0; animation: typing 2s steps(13, end) 1.5s forwards, blink-cursor .75s step-end infinite; }
+    .police-tape { position: absolute; inset: 0; z-index: 1; opacity: 0.15; background: repeating-linear-gradient(45deg, var(--dark), var(--dark) 20px, var(--primary) 20px, var(--primary) 40px); animation: scroll-tape 3s linear infinite; }
+    .preloader-hidden { opacity: 0; pointer-events: none; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    @keyframes scroll-tape { from { background-position: 0 0; } to { background-position: -57px 0; } }
+    @keyframes typing { from { width: 0 } to { width: 100% } }
+    @keyframes blink-cursor { from, to { border-color: transparent } 50% { border-color: rgba(255, 255, 255, 0.75); } }
 
-    /* === CSS UNTUK MODAL PREVIEW GAMBAR === */
-    .image-modal {
-        display: none;
-        position: fixed;
-        z-index: 10001; /* Di atas segalanya */
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.85);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: opacity 0.4s ease;
-    }
-    .modal-content {
-        display: block;
-        max-width: 85%;
-        max-height: 85vh;
-        animation-name: zoom;
-        animation-duration: 0.4s;
-    }
-    @keyframes zoom {
-        from {transform: scale(0)}
-        to {transform: scale(1)}
-    }
-    .close-button {
-        position: absolute;
-        top: 20px;
-        right: 35px;
-        color: #f1f1f1;
-        font-size: 45px;
-        font-weight: bold;
-        transition: 0.3s;
-        cursor: pointer;
-    }
-    .close-button:hover,
-    .close-button:focus {
-        color: #bbb;
-        text-decoration: none;
-    }
-    /* === SELESAI CSS MODAL === */
+    /* Navigasi */
+    nav { background: var(--primary); padding: 0 20px; height: 64px; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; color: white; font-weight: bold; font-size: 18px; }
+    .logo img { width: auto; height: 65px; max-height: 100%; }
+    .logo span { line-height: 1; }
+    .nav-links { list-style: none; display: flex; margin: 0; padding: 0; }
+    .nav-links li { margin-left: 20px; }
+    .nav-links a { font-weight: bold; letter-spacing: 1px; }
+    .hamburger { display: none; font-size: 26px; color: white; cursor: pointer; }
 
+    /* Banner */
+    .banner { min-height: 100vh; height: 100svh; background: linear-gradient(rgba(173,132,219,0.6), rgba(173,132,219,0.6)), url("https://pbs.twimg.com/media/G4hUP_8bgAAREQp?format=jpg&name=4096x4096"); background-size: cover; background-position: center 10%; display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 20px; }
+    .banner h1 { font-size: 42px; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    .banner p { font-size: 18px; max-width: 600px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+    
+    /* Section & Container */
+    section { scroll-margin-top: 70px; width: 100%; margin: 0; padding: 0; }
+    .section-white { background: white; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+    h2 { color: var(--primary); text-align: center; margin-bottom: 15px; }
+
+    /* Home Section */
+    .home-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+    .home-media { position: relative; width: 100%; overflow: hidden; }
+    .home-media img { width: 100%; height: 360px; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .home-media:hover img { transform: scale(1.04); }
+    .home-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient( to bottom, rgba(255,255,255,0) 70%, rgba(255,255,255,1) 100% ); pointer-events: none; }
+    .home-card { background: #ffffff; padding: 40px 35px; border-left: 6px solid var(--primary); display: flex; flex-direction: column; justify-content: center; }
+    .home-card h3 { margin: 0 0 15px; font-size: 26px; color: var(--dark); letter-spacing: 1px; }
+    .home-card .quote { font-size: 18px; line-height: 1.6; color: #444; font-style: italic; }
+
+    /* Gallery Section */
+    #gallery { padding: 80px 0; }
+    #gallery .container > div { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; }
+    #gallery div img { width: 400px; height: 300px; object-fit: cover; border: 2px solid var(--dark); border-radius: 13px; box-shadow: 4px 7px 7px 0px rgba(0,0,0,0.2); cursor: pointer; margin: 10px; transition: transform 400ms; }
+    #gallery div img:hover { transform: scale(1.03); }
+
+    /* Timeline Section */
+    .timeline { display: flex; margin: 0 auto; flex-wrap: wrap; flex-direction: column; max-width: 700px; position: relative; }
+    .timeline__content-title { font-weight: normal; font-size: 66px; margin: -10px 0 0 0; transition: 0.4s; padding: 0 10px; box-sizing: border-box; font-family: "Pathway Gothic One", sans-serif; color: #fff; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); }
+    .timeline__content-desc { margin: 0; font-size: 15px; box-sizing: border-box; color: rgba(255, 255, 255, 0.7); font-family: Cardo, serif; font-weight: normal; line-height: 25px; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); }
+    .timeline__content-desc a { color: #ad84db; font-weight: bold; } /* Membuat link di deskripsi timeline terlihat */
+    .timeline:before { position: absolute; left: 50%; width: 2px; height: 100%; margin-left: -1px; content: ""; background: rgba(255, 255, 255, 0.07); }
+    .timeline-item { padding: 40px 0; opacity: 0.3; filter: blur(2px); transition: 0.5s; box-sizing: border-box; width: calc(50% - 40px); display: flex; position: relative; transform: translateY(-80px); text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); }
+    .timeline-item:before { content: attr(data-text); letter-spacing: 3px; width: 100%; position: absolute; color: rgba(255, 255, 255, 0.5); font-size: 13px; font-family: "Pathway Gothic One", sans-serif; border-left: 2px solid rgba(255, 255, 255, 0.5); top: 70%; margin-top: -5px; padding-left: 15px; opacity: 0; right: calc(-100% - 56px); }
+    .timeline-item:nth-child(even) { align-self: flex-end; }
+    .timeline-item:nth-child(even):before { right: auto; text-align: right; left: calc(-100% - 56px); padding-left: 0; border-left: none; border-right: 2px solid rgba(255, 255, 255, 0.5); padding-right: 15px; }
+    .timeline-item--active { opacity: 1; transform: translateY(0); filter: blur(0px); }
+    .timeline-item--active:before { top: 50%; transition: 0.3s all 0.2s; opacity: 1; }
+    .timeline-item--active .timeline__content-title { margin: -50px 0 20px 0; }
+    .timeline__img { max-width: 100%; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4); cursor: pointer; transition: transform 0.3s ease; }
+    .timeline__img:hover { transform: scale(1.05); }
+    .timeline-container { width: 100%; position: relative; padding: 80px 0; transition: 0.3s ease 0s; background-attachment: fixed; background-size: cover; }
+    .timeline-container:before { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(99, 99, 99, 0.8); content: ""; }
+    .timeline-header { width: 100%; text-align: center; margin-bottom: 80px; position: relative; }
+    .timeline-header__title { color: #fff; font-size: 46px; font-family: Cardo, serif; font-weight: normal; margin: 0; }
+    .timeline-header__subtitle { color: rgba(255, 255, 255, 0.5); font-family: "Pathway Gothic One", sans-serif; font-size: 16px; letter-spacing: 5px; margin: 10px 0 0 0; font-weight: normal; }
+    
+    /* Modal Preview dengan Navigasi */
+    .image-modal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.9); display: flex; justify-content: center; align-items: center; }
+    .modal-content { display: block; margin: auto; max-width: 80%; max-height: 85vh; animation-name: zoom; animation-duration: 0.4s; }
+    @keyframes zoom { from {transform: scale(0)} to {transform: scale(1)} }
+    .close-button { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+    .prev-btn, .next-btn { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; margin-top: -50px; color: white; font-weight: bold; font-size: 30px; transition: 0.3s; border-radius: 0 3px 3px 0; user-select: none; background-color: rgba(0,0,0,0.3); display: none; }
+    .next-btn { right: 0; border-radius: 3px 0 0 3px; }
+    .prev-btn { left: 0; }
+    .prev-btn:hover, .next-btn:hover, .close-button:hover { background-color: rgba(173, 132, 219, 0.8); color: white; text-decoration: none; }
+    
+    /* Footer */
+    footer { text-align: center; padding: 10px 25px; color: #f6f1fb; font-size: 14px; background: #ad84db; }
+    
+    /* Media Queries */
     @media (max-width: 768px) {
-      .nav-links {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: var(--primary);
-        width: 100%;
-        flex-direction: column;
-        display: none;
-      }
-      .nav-links li {
-        margin: 15px 0;
-        text-align: center;
-      }
-      .hamburger {
-        display: block;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .banner h1 {
-        font-size: 30px;
-      }
-      .home-grid-2 {
-        grid-template-columns: 1fr;
-      }
-      .home-media img {
-        height: 260px;
-      }
-      .slides {
-        height: 260px;
-      }
-      .caption {
-        font-size: 14px;
-      }
-      
-      /* Media Query untuk Timeline */
-      .timeline:before {
-          left: 40px;
-      }
-      .timeline-item {
-          align-self: baseline !important;
-          width: 100%;
-          padding: 0 30px 150px 80px;
-      }
-      .timeline-item:before {
-          left: 10px !important;
-          padding: 0 !important;
-          top: 50px;
-          text-align: center !important;
-          width: 60px;
-          border: none !important;
-      }
-      .timeline-item:last-child {
-          padding-bottom: 40px;
-      }
+      .nav-links { position: absolute; top: 60px; right: 0; background: var(--primary); width: 100%; flex-direction: column; display: none; }
+      .nav-links li { margin: 15px 0; text-align: center; }
+      .hamburger { display: block; }
+      .nav-links.active { display: flex; }
+      .banner h1 { font-size: 30px; }
+      .home-grid-2 { grid-template-columns: 1fr; }
+      .home-media img { height: 260px; }
+      #gallery div img { width: 100%; height: 250px; }
+      .timeline:before { left: 40px; }
+      .timeline-item { align-self: baseline !important; width: 100%; padding: 0 30px 150px 80px; }
+      .timeline-item:before { left: 10px !important; padding: 0 !important; top: 50px; text-align: center !important; width: 60px; border: none !important; }
+      .timeline-item:last-child { padding-bottom: 40px; }
     }
   </style>
 </head>
 <body>
-  <!-- === KODE PRELOADER - MULAI === -->
   <div id="preloader">
     <div class="police-tape"></div>
     <div class="preloader-content">
@@ -572,7 +149,7 @@
       <h3 class="preloader-text">Ubi Ungu Area.</h3>
     </div>
   </div>
-  <!-- === KODE PRELOADER - SELESAI === -->
+
   <nav>
     <div class="logo">
       <img src="assets/image/logo-txt.png" alt="Logo">
@@ -580,10 +157,8 @@
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">HOME</a></li>
-      <!-- <li><a href="#kegiatan">KEGIATAN</a></li> -->
-      <li><a href="#timeline-1">LINIMASA</a></li> <!-- Tautan diperbarui -->
-      <!-- <li><a href="#about">ABOUT US</a></li>
-      <li><a href="#gallery">GALERY</a></li> -->
+      <li><a href="#timeline-1">LINIMASA</a></li>
+      <li><a href="#gallery">GALLERY</a></li>
     </ul>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
   </nav>
@@ -609,111 +184,86 @@
     </div>
   </section>
 
-  <!-- <section id="kegiatan">
-    <div class="container">
-      <h2>KEGIATAN</h2>
-      <div class="slider">
-        <div class="slides">
-          <div class="slide active"><img src="assets/image/Kegiatan-1.jpg" alt="Gathering"><div class="caption">Cover lagu : Mantra Hujan</div></div>
-          <div class="slide"><img src="assets/image/Kegiatan-2.jpg" alt="Gathering"><div class="caption">Release lagu : Berhenti Sejenak</div></div>
-          <div class="slide"><img src="assets/image/Kegiatan-3.jpg" alt="Gathering"><div class="caption">Berbagi Cheese Cake (Ultah lily ke-18)</div></div>
-          <div class="slide"><img src="assets/image/Kegiatan-4.jpg" alt="Gathering"><div class="caption">Release Merch.VoL 1 : Jersey #Violetta</div></div>
+   <div class="timeline-container" id="timeline-1">
+    <div class="timeline-header">
+      <h2 class="timeline-header__title">LINIMASA KAMI</h2>
+      <h3 class="timeline-header__subtitle">JEJAK LANGKAH UBI UNGU</h3>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item" data-text="COVER LAGU : MANTRA HUJAN">
+        <div class="timeline__content">
+          <img class="timeline__img" src="assets/image/Kegiatan-1.jpg" />
+          <h2 class="timeline__content-title">2025</h2>
+          <p class="timeline__content-desc">Berawal dari orang-orang yang memiliki ketertarikan yang sama, kami berkumpul dan membentuk "Pasukan Ubi Ungu" dan di kegabutan ini kami mengcover lagu mantra hujan, dimana lagu tersebut adalah salah satu lagu yang disukai oleh Lily. <a href="https://x.com/Chand335544/status/1939320885145661749" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
         </div>
-        <button class="nav prev" onclick="prevSlide()">‹</button>
-        <button class="nav next" onclick="nextSlide()">›</button>
+      </div>
+      <div class="timeline-item" data-text="BERBAGI CHEESECAKE (ULTAH LILY KE-18)">
+        <div class="timeline__content">
+          <img class="timeline__img" src="assets/image/Kegiatan-3.jpg" />
+          <h2 class="timeline__content-title">2025</h2>
+          <p class="timeline__content-desc">Merupakan hasil kolaborasi bersama teman-teman Hillaryours & lily oshi, berbagi dengan sesama dan menyebarkan kehangatan. <a href="https://x.com/Hillaryours_ID/status/1979741444794638747?s=20" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="RELEASE LAGU: BERHENTI SEJENAK">
+        <div class="timeline__content">
+          <img class="timeline__img" src="assets/image/Kegiatan-2.jpg" />
+          <h2 class="timeline__content-title">2025</h2>
+          <p class="timeline__content-desc">Merilis karya kolaborasi pertama, sebuah lagu yang menjadi #playLyst terfavorit. <a href="https://www.youtube.com/watch?v=6XnT20AWAww" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="MERCH.VOL 1 : JERSEY #VIOLETTA">
+        <div class="timeline__content">
+          <img class="timeline__img" src="assets/image/Kegiatan-4.jpg" />
+          <h2 class="timeline__content-title">2025</h2>
+          <p class="timeline__content-desc">Release Merchandise pertama yang bertemakan #Violetta. <a href="https://x.com/PasukanUbiUngu/status/1993291600437690378/video/1" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
+        </div>
       </div>
     </div>
-  </section> -->
-  
-  <!-- === MULAI KONTEN TIMELINE === -->
-  <!-- CATATAN: Ganti 'src' gambar di bawah ini dengan path gambar Anda yang sebenarnya. -->
-  <div class="timeline-container" id="timeline-1">
-      <div class="timeline-header">
-          <h2 class="timeline-header__title">LINIMASA KAMI</h2>
-          <h3 class="timeline-header__subtitle">JEJAK LANGKAH UBI UNGU</h3>
-      </div>
-      <div class="timeline">
-          <div class="timeline-item" data-text="COVER LAGU : MANTRA HUJAN">
-              <div class="timeline__content"><img class="timeline__img" src="assets/image/Kegiatan-1.jpg" />
-                  <h2 class="timeline__content-title">2025</h2>
-                  <p class="timeline__content-desc">Berawal dari orang-orang yang memiliki ketertarikan yang sama, kami berkumpul dan membentuk "Pasukan Ubi Ungu" dan di kegabutan ini kami mengcover lagu mantra hujan, dimana lagu tersebut adalah salah satu lagu yang disukai oleh Lily.</p>
-              </div>
-          </div>
-          <div class="timeline-item" data-text="BERBAGI CHEESECAKE (ULTAH LILY KE-18)">
-              <div class="timeline__content"><img class="timeline__img" src="assets/image/Kegiatan-3.jpg" />
-                  <h2 class="timeline__content-title">2025</h2>
-                  <p class="timeline__content-desc">Mengadakan acara sosial, yang merupakan hasil kolaborasi bersama teman-teman Hillaryours & lily oshi, berbagi dengan sesama dan menyebarkan kehangatan.</p>
-              </div>
-          </div>
-          <div class="timeline-item" data-text="RELEASE LAGU PERATAMA HASIL KOLABORASI BERSAMA MAS KOWALSKI : BERHENTI SEJENAK">
-              <div class="timeline__content"><img class="timeline__img" src="assets/image/Kegiatan-2.jpg" />
-                  <h2 class="timeline__content-title">2025</h2>
-                  <p class="timeline__content-desc">Merilis karya kolaborasi pertama, sebuah lagu yang menjadi #playLyst terfavorit. <a href="https://www.youtube.com/watch?v=6XnT20AWAww" target="_blank" rel="noopener noreferrer">
-                      Penasaran? bisa diklik disini.
-                  </a></p>
-              </div>
-          </div>
-          <div class="timeline-item" data-text="MERCH.VOL 1 : JERSEY #VIOLETTA">
-              <div class="timeline__content"><img class="timeline__img" src="assets/image/Kegiatan-4.jpg" />
-                  <h2 class="timeline__content-title">2025</h2>
-                  <p class="timeline__content-desc">Release Merchandise pertama yang bertemakan #Violetta</p>
-              </div>
-          </div>
-      </div>
   </div>
-  <!-- === SELESAI KONTEN TIMELINE === -->
 
-  <!-- === MODAL PREVIEW GAMBAR - MULAI === -->
+  <section id="gallery">
+    <div class="container">
+      <h2>GALLERY</h2>
+      <div>
+        <img src="assets/image/1000006454.png" alt="Gallery Image 1">
+        <img src="assets/image/1000006455.png" alt="Gallery Image 2">
+        <img src="assets/image/1000006456.png" alt="Gallery Image 3">
+        <img src="assets/image/1000006457.png" alt="Gallery Image 4">
+        <img src="assets/image/1000006459.png" alt="Gallery Image 5">
+      </div>
+    </div>
+  </section>
+  
   <div id="image-preview-modal" class="image-modal" style="display: none;">
       <span class="close-button">&times;</span>
+      <a class="prev-btn">&#10094;</a>
+      <a class="next-btn">&#10095;</a>
       <img class="modal-content" id="preview-image">
   </div>
-  <!-- === MODAL PREVIEW GAMBAR - SELESAI === -->
-
-  <footer>
-    © 2026 Pasukan Ubi Ungu | Made with 💜 (dibaca : Love sampe mati)
-  </footer>
-
-  <!-- Chatbase Script -->
+  
+  <footer>© 2026 Pasukan Ubi Ungu | Made with 💜 (dibaca : Love sampe mati)</footer>
+  
   <script>
     (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="JKFJYAwkCWM8O0HsQLHeM";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
   </script>
-
-  <!-- Website Functionality Script -->
+  
   <script>
-    // === JAVASCRIPT UNTUK PRELOADER ===
     window.addEventListener('load', function() {
       const preloader = document.getElementById('preloader');
       setTimeout(() => { preloader.classList.add('preloader-hidden'); }, 4000); 
       setTimeout(() => { preloader.style.display = 'none'; }, 4800); 
     });
-
-    // --- Fungsi website Anda ---
     function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }
-
-    const slides = document.querySelectorAll('.slide');
-    let current = 0;
-    function showSlide(index) { if(slides && slides.length > 0) { slides.forEach(slide => slide.classList.remove('active')); slides[index].classList.add('active'); } }
-    function nextSlide() { if(slides && slides.length > 0) { current = (current + 1) % slides.length; showSlide(current); } }
-    function prevSlide() { if(slides && slides.length > 0) { current = (current - 1 + slides.length) % slides.length; showSlide(current); } }
   </script>
-
-  <!-- === SCRIPT UNTUK TIMELINE (MEMBUTUHKAN JQUERY) === -->
+  
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
     (function ($) {
         $.fn.timeline = function () {
-            var selectors = {
-                id: $(this),
-                item: $(this).find(".timeline-item"),
-                activeClass: "timeline-item--active",
-                img: ".timeline__img"
-            };
+            var selectors = { id: $(this), item: $(this).find(".timeline-item"), activeClass: "timeline-item--active", img: ".timeline__img" };
+            if (selectors.item.length === 0) return;
             selectors.item.eq(0).addClass(selectors.activeClass);
-            selectors.id.css(
-                "background-image",
-                "url(" + selectors.item.first().find(selectors.img).attr("src") + ")"
-            );
+            selectors.id.css( "background-image", "url(" + selectors.item.first().find(selectors.img).attr("src") + ")" );
             var itemLength = selectors.item.length;
             $(window).scroll(function () {
                 var max, min;
@@ -721,20 +271,12 @@
                 selectors.item.each(function (i) {
                     min = $(this).offset().top;
                     max = $(this).height() + $(this).offset().top;
-                    var that = $(this);
-                    if (i == itemLength - 2 && pos > min + $(this).height() / 2) {
+                    if (i === itemLength - 1 && pos + $(window).height() > min + $(this).height()) {
                         selectors.item.removeClass(selectors.activeClass);
-                        selectors.id.css(
-                            "background-image",
-                            "url(" + selectors.item.last().find(selectors.img).attr(
-                                "src") + ")"
-                        );
-                        selectors.item.last().addClass(selectors.activeClass);
+                        $(this).addClass(selectors.activeClass);
+                        selectors.id.css("background-image", "url(" + $(this).find(selectors.img).attr("src") + ")");
                     } else if (pos <= max - 40 && pos >= min) {
-                        selectors.id.css(
-                            "background-image",
-                            "url(" + $(this).find(selectors.img).attr("src") + ")"
-                        );
+                        selectors.id.css("background-image", "url(" + $(this).find(selectors.img).attr("src") + ")");
                         selectors.item.removeClass(selectors.activeClass);
                         $(this).addClass(selectors.activeClass);
                     }
@@ -742,40 +284,80 @@
             });
         };
     })(jQuery);
-
-    // Inisialisasi Timeline
     $("#timeline-1").timeline();
   </script>
-
-  <!-- === JAVASCRIPT UNTUK MODAL PREVIEW GAMBAR === -->
+  
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Ambil semua elemen yang dibutuhkan
         const modal = document.getElementById('image-preview-modal');
-        const modalImg = document.getElementById('preview-image');
-        const closeBtn = document.querySelector('.close-button');
-        const timelineImages = document.querySelectorAll('.timeline__img');
+        if (!modal) return;
 
-        // Tambahkan event listener untuk setiap gambar di timeline
+        const modalImg = document.getElementById('preview-image');
+        const closeBtn = modal.querySelector('.close-button');
+        const prevBtn = modal.querySelector('.prev-btn');
+        const nextBtn = modal.querySelector('.next-btn');
+
+        // Logika untuk Galeri dengan Slider
+        const galleryImages = document.querySelectorAll('#gallery div img');
+        const galleryImageSources = Array.from(galleryImages).map(img => img.src);
+        let currentIndex = 0;
+        let isGallerySliderActive = false;
+
+        function showGalleryImage(index) {
+            if (index < 0 || index >= galleryImageSources.length) return;
+            modalImg.src = galleryImageSources[index];
+            currentIndex = index;
+        }
+
+        galleryImages.forEach((img, index) => {
+            img.addEventListener('click', function() {
+                isGallerySliderActive = true;
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+                modal.style.display = 'flex';
+                showGalleryImage(index);
+            });
+        });
+
+        // Logika untuk Timeline (Preview Tunggal)
+        const timelineImages = document.querySelectorAll('.timeline__img');
         timelineImages.forEach(img => {
             img.addEventListener('click', function() {
+                isGallerySliderActive = false;
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
                 modal.style.display = 'flex';
                 modalImg.src = this.src;
             });
         });
 
-        // Fungsi untuk menutup modal
+        // Fungsi Umum Modal
         function closeModal() {
             modal.style.display = 'none';
+            isGallerySliderActive = false;
         }
 
-        // Tutup modal saat tombol close diklik
         closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', e => {
+            if (e.target === modal) closeModal();
+        });
 
-        // Tutup modal saat area di luar gambar (overlay) diklik
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeModal();
+        nextBtn.addEventListener('click', () => {
+            const nextIndex = (currentIndex + 1) % galleryImageSources.length;
+            showGalleryImage(nextIndex);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            const prevIndex = (currentIndex - 1 + galleryImageSources.length) % galleryImageSources.length;
+            showGalleryImage(prevIndex);
+        });
+
+        document.addEventListener('keydown', e => {
+            if (modal.style.display !== 'flex') return;
+            if (e.key === 'Escape') closeModal();
+            if (isGallerySliderActive) {
+                if (e.key === 'ArrowRight') nextBtn.click();
+                if (e.key === 'ArrowLeft') prevBtn.click();
             }
         });
     });
