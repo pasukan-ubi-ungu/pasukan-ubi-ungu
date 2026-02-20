@@ -6,12 +6,26 @@
   <link rel="icon" type="image/png" href="assets/image/logo-txt.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* Tambahan font untuk Timeline */
+    @import url("https://fonts.googleapis.com/css?family=Cardo|Pathway+Gothic+One");
+
+
+    a {
+      color: #ad84db; 
+      text-decoration: none;
+      transition: color 0.3s ease; 
+    }
+
+    a:hover {
+      color: black; 
+      text-decoration: underline; 
+    }
+
     :root {
       --primary: #ad84db;
       --dark: #5e3a87;
       --bg: #f6f1fb;
     }
-
     /* === CSS LENGKAP UNTUK PRELOADER === */
     #preloader {
       position: fixed;
@@ -28,23 +42,20 @@
       transition: opacity 0.75s ease-out;
       overflow: hidden;
     }
-
     .preloader-content {
       position: relative;
       z-index: 2;
       text-align: center;
     }
-
     #preloader img {
       max-width: 200px;
       animation: fadeIn 1s ease-in-out, pulse 2s infinite ease-in-out 1s;
     }
-    
     .preloader-text {
       color: #fff;
       font-family: 'Courier New', Courier, monospace;
-      font-size: 1.5rem; /* <-- UKURAN BARU YANG LEBIH BESAR */
-      letter-spacing: 4px; /* Jarak antar huruf sedikit ditambah */
+      font-size: 1.5rem;
+      letter-spacing: 4px;
       text-transform: uppercase;
       margin-top: 20px;
       overflow: hidden;
@@ -55,8 +66,6 @@
         typing 2s steps(13, end) 1.5s forwards,
         blink-cursor .75s step-end infinite;
     }
-
-
     .police-tape {
       position: absolute;
       inset: 0;
@@ -65,19 +74,16 @@
       background: repeating-linear-gradient(45deg, var(--dark), var(--dark) 20px, var(--primary) 20px, var(--primary) 40px);
       animation: scroll-tape 3s linear infinite;
     }
-    
     .preloader-hidden {
       opacity: 0;
       pointer-events: none;
     }
-
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
     @keyframes scroll-tape { from { background-position: 0 0; } to { background-position: -57px 0; } }
     @keyframes typing { from { width: 0 } to { width: 100% } }
     @keyframes blink-cursor { from, to { border-color: transparent } 50% { border-color: rgba(255, 255, 255, 0.75); } }
     /* === BATAS CSS PRELOADER === */
-
     * {
       box-sizing: border-box;
     }
@@ -313,6 +319,191 @@
       font-size: 14px;
       background: var(--bg);
     }
+    
+    /* === MULAI CSS TIMELINE === */
+    .timeline {
+        display: flex;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        flex-direction: column;
+        max-width: 700px;
+        position: relative;
+    }
+    .timeline__content-title {
+        font-weight: normal;
+        font-size: 66px;
+        margin: -10px 0 0 0;
+        transition: 0.4s;
+        padding: 0 10px;
+        box-sizing: border-box;
+        font-family: "Pathway Gothic One", sans-serif;
+        color: #fff;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    }
+    .timeline__content-desc {
+        margin: 0;
+        font-size: 15px;
+        box-sizing: border-box;
+        color: rgba(255, 255, 255, 0.7);
+        font-family: Cardo, serif;
+        font-weight: normal;
+        line-height: 25px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    }
+    .timeline:before {
+        position: absolute;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        margin-left: -1px;
+        content: "";
+        background: rgba(255, 255, 255, 0.07);
+    }
+    .timeline-item {
+        padding: 40px 0;
+        opacity: 0.3;
+        filter: blur(2px);
+        transition: 0.5s;
+        box-sizing: border-box;
+        width: calc(50% - 40px);
+        display: flex;
+        position: relative;
+        transform: translateY(-80px);
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    }
+    .timeline-item:before {
+        content: attr(data-text);
+        letter-spacing: 3px;
+        width: 100%;
+        position: absolute;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 13px;
+        font-family: "Pathway Gothic One", sans-serif;
+        border-left: 2px solid rgba(255, 255, 255, 0.5);
+        top: 70%;
+        margin-top: -5px;
+        padding-left: 15px;
+        opacity: 0;
+        right: calc(-100% - 56px);
+    }
+    .timeline-item:nth-child(even) {
+        align-self: flex-end;
+    }
+    .timeline-item:nth-child(even):before {
+        right: auto;
+        text-align: right;
+        left: calc(-100% - 56px);
+        padding-left: 0;
+        border-left: none;
+        border-right: 2px solid rgba(255, 255, 255, 0.5);
+        padding-right: 15px;
+    }
+    .timeline-item--active {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0px);
+    }
+    .timeline-item--active:before {
+        top: 50%;
+        transition: 0.3s all 0.2s;
+        opacity: 1;
+    }
+    .timeline-item--active .timeline__content-title {
+        margin: -50px 0 20px 0;
+    }
+    .timeline__img {
+        max-width: 100%;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+        cursor: pointer; /* Menambahkan cursor pointer */
+        transition: transform 0.3s ease;
+    }
+    .timeline__img:hover {
+        transform: scale(1.05); /* Efek hover kecil */
+    }
+    .timeline-container {
+        width: 100%;
+        position: relative;
+        padding: 80px 0;
+        transition: 0.3s ease 0s;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    .timeline-container:before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(99, 99, 99, 0.8);
+        content: "";
+    }
+    .timeline-header {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 80px;
+        position: relative;
+    }
+    .timeline-header__title {
+        color: #fff;
+        font-size: 46px;
+        font-family: Cardo, serif;
+        font-weight: normal;
+        margin: 0;
+    }
+    .timeline-header__subtitle {
+        color: rgba(255, 255, 255, 0.5);
+        font-family: "Pathway Gothic One", sans-serif;
+        font-size: 16px;
+        letter-spacing: 5px;
+        margin: 10px 0 0 0;
+        font-weight: normal;
+    }
+    /* === SELESAI CSS TIMELINE === */
+
+    /* === CSS UNTUK MODAL PREVIEW GAMBAR === */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 10001; /* Di atas segalanya */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.85);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.4s ease;
+    }
+    .modal-content {
+        display: block;
+        max-width: 85%;
+        max-height: 85vh;
+        animation-name: zoom;
+        animation-duration: 0.4s;
+    }
+    @keyframes zoom {
+        from {transform: scale(0)}
+        to {transform: scale(1)}
+    }
+    .close-button {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 45px;
+        font-weight: bold;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    .close-button:hover,
+    .close-button:focus {
+        color: #bbb;
+        text-decoration: none;
+    }
+    /* === SELESAI CSS MODAL === */
+
     @media (max-width: 768px) {
       .nav-links {
         position: absolute;
@@ -348,11 +539,31 @@
       .caption {
         font-size: 14px;
       }
+      
+      /* Media Query untuk Timeline */
+      .timeline:before {
+          left: 40px;
+      }
+      .timeline-item {
+          align-self: baseline !important;
+          width: 100%;
+          padding: 0 30px 150px 80px;
+      }
+      .timeline-item:before {
+          left: 10px !important;
+          padding: 0 !important;
+          top: 50px;
+          text-align: center !important;
+          width: 60px;
+          border: none !important;
+      }
+      .timeline-item:last-child {
+          padding-bottom: 40px;
+      }
     }
   </style>
 </head>
 <body>
-
   <!-- === KODE PRELOADER - MULAI === -->
   <div id="preloader">
     <div class="police-tape"></div>
@@ -362,7 +573,6 @@
     </div>
   </div>
   <!-- === KODE PRELOADER - SELESAI === -->
-
   <nav>
     <div class="logo">
       <img src="assets/image/logo-txt.png" alt="Logo">
@@ -370,9 +580,10 @@
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">HOME</a></li>
-      <li><a href="#kegiatan">KEGIATAN</a></li>
-      <li><a href="#about">ABOUT US</a></li>
-      <li><a href="#gallery">GALERY</a></li>
+      <!-- <li><a href="#kegiatan">KEGIATAN</a></li> -->
+      <li><a href="#timeline-1">LINIMASA</a></li> <!-- Tautan diperbarui -->
+      <!-- <li><a href="#about">ABOUT US</a></li>
+      <li><a href="#gallery">GALERY</a></li> -->
     </ul>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
   </nav>
@@ -398,7 +609,7 @@
     </div>
   </section>
 
-  <section id="kegiatan">
+  <!-- <section id="kegiatan">
     <div class="container">
       <h2>KEGIATAN</h2>
       <div class="slider">
@@ -412,7 +623,52 @@
         <button class="nav next" onclick="nextSlide()">›</button>
       </div>
     </div>
-  </section>
+  </section> -->
+  
+  <!-- === MULAI KONTEN TIMELINE === -->
+  <!-- CATATAN: Ganti 'src' gambar di bawah ini dengan path gambar Anda yang sebenarnya. -->
+  <div class="timeline-container" id="timeline-1">
+      <div class="timeline-header">
+          <h2 class="timeline-header__title">LINIMASA KAMI</h2>
+          <h3 class="timeline-header__subtitle">JEJAK LANGKAH UBI UNGU</h3>
+      </div>
+      <div class="timeline">
+          <div class="timeline-item" data-text="COVER LAGU : MANTRA HUJAN">
+              <div class="timeline__content"><img class="timeline__img" src="assets/image/Kegiatan-1.jpg" />
+                  <h2 class="timeline__content-title">2025</h2>
+                  <p class="timeline__content-desc">Berawal dari orang-orang yang memiliki ketertarikan yang sama, kami berkumpul dan membentuk "Pasukan Ubi Ungu" dan di kegabutan ini kami mengcover lagu mantra hujan, dimana lagu tersebut adalah salah satu lagu yang disukai oleh Lily.</p>
+              </div>
+          </div>
+          <div class="timeline-item" data-text="BERBAGI CHEESECAKE (ULTAH LILY KE-18)">
+              <div class="timeline__content"><img class="timeline__img" src="assets/image/Kegiatan-3.jpg" />
+                  <h2 class="timeline__content-title">2025</h2>
+                  <p class="timeline__content-desc">Mengadakan acara sosial, yang merupakan hasil kolaborasi bersama teman-teman Hillaryours & lily oshi, berbagi dengan sesama dan menyebarkan kehangatan.</p>
+              </div>
+          </div>
+          <div class="timeline-item" data-text="RELEASE LAGU PERATAMA HASIL KOLABORASI BERSAMA MAS KOWALSKI : BERHENTI SEJENAK">
+              <div class="timeline__content"><img class="timeline__img" src="assets/image/Kegiatan-2.jpg" />
+                  <h2 class="timeline__content-title">2025</h2>
+                  <p class="timeline__content-desc">Merilis karya kolaborasi pertama, sebuah lagu yang menjadi #playLyst terfavorit. <a href="https://www.youtube.com/watch?v=6XnT20AWAww" target="_blank" rel="noopener noreferrer">
+                      Penasaran? bisa diklik disini.
+                  </a></p>
+              </div>
+          </div>
+          <div class="timeline-item" data-text="MERCH.VOL 1 : JERSEY #VIOLETTA">
+              <div class="timeline__content"><img class="timeline__img" src="assets/image/Kegiatan-4.jpg" />
+                  <h2 class="timeline__content-title">2025</h2>
+                  <p class="timeline__content-desc">Release Merchandise pertama yang bertemakan #Violetta</p>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- === SELESAI KONTEN TIMELINE === -->
+
+  <!-- === MODAL PREVIEW GAMBAR - MULAI === -->
+  <div id="image-preview-modal" class="image-modal" style="display: none;">
+      <span class="close-button">&times;</span>
+      <img class="modal-content" id="preview-image">
+  </div>
+  <!-- === MODAL PREVIEW GAMBAR - SELESAI === -->
 
   <footer>
     © 2026 Pasukan Ubi Ungu | Made with 💜 (dibaca : Love sampe mati)
@@ -425,7 +681,7 @@
 
   <!-- Website Functionality Script -->
   <script>
-    // === JAVASCRIPT UNTUK PRELOADER (DENGAN DELAY 3 DETIK) ===
+    // === JAVASCRIPT UNTUK PRELOADER ===
     window.addEventListener('load', function() {
       const preloader = document.getElementById('preloader');
       setTimeout(() => { preloader.classList.add('preloader-hidden'); }, 4000); 
@@ -434,11 +690,95 @@
 
     // --- Fungsi website Anda ---
     function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }
+
     const slides = document.querySelectorAll('.slide');
     let current = 0;
     function showSlide(index) { if(slides && slides.length > 0) { slides.forEach(slide => slide.classList.remove('active')); slides[index].classList.add('active'); } }
     function nextSlide() { if(slides && slides.length > 0) { current = (current + 1) % slides.length; showSlide(current); } }
     function prevSlide() { if(slides && slides.length > 0) { current = (current - 1 + slides.length) % slides.length; showSlide(current); } }
+  </script>
+
+  <!-- === SCRIPT UNTUK TIMELINE (MEMBUTUHKAN JQUERY) === -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    (function ($) {
+        $.fn.timeline = function () {
+            var selectors = {
+                id: $(this),
+                item: $(this).find(".timeline-item"),
+                activeClass: "timeline-item--active",
+                img: ".timeline__img"
+            };
+            selectors.item.eq(0).addClass(selectors.activeClass);
+            selectors.id.css(
+                "background-image",
+                "url(" + selectors.item.first().find(selectors.img).attr("src") + ")"
+            );
+            var itemLength = selectors.item.length;
+            $(window).scroll(function () {
+                var max, min;
+                var pos = $(this).scrollTop();
+                selectors.item.each(function (i) {
+                    min = $(this).offset().top;
+                    max = $(this).height() + $(this).offset().top;
+                    var that = $(this);
+                    if (i == itemLength - 2 && pos > min + $(this).height() / 2) {
+                        selectors.item.removeClass(selectors.activeClass);
+                        selectors.id.css(
+                            "background-image",
+                            "url(" + selectors.item.last().find(selectors.img).attr(
+                                "src") + ")"
+                        );
+                        selectors.item.last().addClass(selectors.activeClass);
+                    } else if (pos <= max - 40 && pos >= min) {
+                        selectors.id.css(
+                            "background-image",
+                            "url(" + $(this).find(selectors.img).attr("src") + ")"
+                        );
+                        selectors.item.removeClass(selectors.activeClass);
+                        $(this).addClass(selectors.activeClass);
+                    }
+                });
+            });
+        };
+    })(jQuery);
+
+    // Inisialisasi Timeline
+    $("#timeline-1").timeline();
+  </script>
+
+  <!-- === JAVASCRIPT UNTUK MODAL PREVIEW GAMBAR === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ambil semua elemen yang dibutuhkan
+        const modal = document.getElementById('image-preview-modal');
+        const modalImg = document.getElementById('preview-image');
+        const closeBtn = document.querySelector('.close-button');
+        const timelineImages = document.querySelectorAll('.timeline__img');
+
+        // Tambahkan event listener untuk setiap gambar di timeline
+        timelineImages.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = 'flex';
+                modalImg.src = this.src;
+            });
+        });
+
+        // Fungsi untuk menutup modal
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Tutup modal saat tombol close diklik
+        closeBtn.addEventListener('click', closeModal);
+
+        // Tutup modal saat area di luar gambar (overlay) diklik
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    });
   </script>
 </body>
 </html>
