@@ -5,6 +5,7 @@
   <title>Pasukan Ubi Ungu</title>
   <link rel="icon" type="image/png" href="assets/image/logo-txt.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     /* Google Fonts */
     @import url("https://fonts.googleapis.com/css?family=Cardo|Pathway+Gothic+One");
@@ -84,6 +85,23 @@
     .home-card h3 { margin: 0 0 15px; font-size: 26px; color: var(--dark); letter-spacing: 1px; }
     .home-card .quote { font-size: 18px; line-height: 1.6; color: #444; font-style: italic; }
 
+    /* socialmedia/contact Section */
+    #contact { padding: 80px 0; background: rgba(173, 132, 219, 0.1); min-height: 70vh;}
+    .socialmedia { padding: 0 80px 0;  margin: 0; box-sizing: border-box; display: flex; justify-content: center; align-items: center; transition: 0.5s;}
+    .sci {position: relative; display: flex;}
+    .sci li {list-style: none ;}
+    .sci li::before{content: attr(data-text); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 14vw; pointer-events: none; font-weight: 700; transition: 0.5s; opacity: 0;}
+    .sci li.hover-active::before { color: white; opacity: 0.05; transform: translate(-50%, calc(-50% + 170px)); }
+    .sci li:hover::before{opacity: 0.7; transform: translate(-50%,calc(-50% + 170px));}
+    .sci li a{position: relative; display: inline-block; width: 120px; height: 120px; background: #fff; display: flex; justify-content: center; align-items: center; color: #333; border-radius: 10px; text-decoration: none; margin: 20px; font-size: 4em; transform-style: preserve-3d; perspective: 500px; box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);}
+    .js-tilt-glare{border-radius: 10px;}
+    .sci li a:hover.x{background: #000000;}
+    .sci li a:hover.tiktok{background: #231f20;}
+    .sci li a:hover.line{background: #02c053;}
+    .sci li a .fa-brands{transition: 0.25s; pointer-events: none;}
+    .sci li a:hover .fa-brands{color: #fff; transform: scale(1.75) translateZ(50px);}
+
+
     /* Gallery Section */
     #gallery { padding: 80px 0; }
     #gallery .container > div { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; }
@@ -138,6 +156,10 @@
       .timeline-item { align-self: baseline !important; width: 100%; padding: 0 30px 150px 80px; }
       .timeline-item:before { left: 10px !important; padding: 0 !important; top: 50px; text-align: center !important; width: 60px; border: none !important; }
       .timeline-item:last-child { padding-bottom: 40px; }
+      #contact { min-height: auto; padding: 60px 0; }
+      .socialmedia { padding: 0 15px; }
+      .sci li a { width: 80px; height: 80px; margin: 10px; font-size: 2.5em;}
+      .sci li:hover::before, .sci li.hover-active::before { transform: translate(-50%, calc(-50% + 80px)); }
     }
   </style>
 </head>
@@ -158,6 +180,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">HOME</a></li>
       <li><a href="#timeline-1">LINIMASA</a></li>
+      <li><a href="#contact">CONTACT US</a></li>
       <li><a href="#gallery">GALLERY</a></li>
     </ul>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
@@ -220,6 +243,23 @@
       </div>
     </div>
   </div>
+
+  <section id="contact">
+    <h2>CONTACT US</h2>
+      <div class="socialmedia">
+        <ul class="sci">
+        <li data-text="X" data-color="#000000">
+          <a href="https://x.com/PasukanUbiUngu" class="x" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+        </li>
+        <li data-text="Tiktok" data-color="#231f20">
+          <a href="https://www.tiktok.com/@pasukanubiungu_" class="tiktok" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
+        </li>
+        <li data-text="Line" data-color="#02c053">
+          <a href="https://line.me/ti/p/pasukanubiungu" class="line" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-line"></i></a>
+        </li>
+      </ul> 
+      <div>
+  </section>
 
   <section id="gallery">
     <div class="container">
@@ -362,5 +402,38 @@
         });
     });
   </script>
+
+  <script src="vanilla-tilt.min.js"></script>
+  
+  <script>
+
+    VanillaTilt.init(document.querySelectorAll(".sci li a"), {
+        max: 30,
+        speed: 400,
+        galre: true,
+        "max-glare" : 1,
+      });
+
+
+    const sciList = document.querySelectorAll('.sci li');
+    const contactSectionBg = document.querySelector('#contact');
+
+    if (sciList.length > 0 && contactSectionBg) {
+        sciList.forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                let color = element.getAttribute('data-color');
+                contactSectionBg.style.backgroundColor = color;
+              
+                element.classList.add('hover-active');
+            });
+
+            element.addEventListener('mouseleave', function() {
+                contactSectionBg.style.backgroundColor = '';
+                element.classList.remove('hover-active');
+            });
+        });
+    }
+</script>
+
 </body>
 </html>
