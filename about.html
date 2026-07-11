@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasukan Ubi Ungu - Links</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* ANIMASI BACKGROUND GRADASI BERGERAK */
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            background: linear-gradient(-45deg, #18032b, #2e0854, #4a154b, #130122);
+            background-size: 400% 400%;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            animation: gradientMove 15s ease infinite;
+        }
+
+        /* ==========================================
+           ANIMASI KELELAWAR REALISTIS (REALISTIC BATS)
+           ========================================== */
+        .bat-cave {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .bat {
+            position: absolute;
+            bottom: -80px;
+            left: var(--start-x);
+            font-size: var(--size);
+            opacity: 0;
+            filter: blur(var(--blur)); /* Efek kedalaman kamera (3D Depth) */
+            /* Memanggil animasi terbang meliuk dan kepakan sayap dengan kecepatan berbeda */
+            animation: batFlyReal 2.5s cubic-bezier(0.33, 1, 0.68, 1) forwards,
+                       batFlapReal var(--flap-speed) linear infinite;
+            animation-delay: var(--delay);
+        }
+
+        /* Animasi Jalur Terbang Meliuk (Zig-zag Alami) */
+        @keyframes batFlyReal {
+            0% {
+                bottom: -80px;
+                opacity: 0;
+                margin-left: 0;
+            }
+            10% {
+                opacity: var(--max-op);
+            }
+            30% {
+                margin-left: 30px; /* Meliuk ke kanan */
+            }
+            60% {
+                margin-left: -20px; /* Meliuk ke kiri */
+            }
+            90% {
+                opacity: var(--max-op);
+            }
+            100% {
+                bottom: 115vh;
+                opacity: 0;
+                margin-left: var(--drift);
+            }
+        }
+
+        /* Animasi Kepakan Sayap Alami */
+        @keyframes batFlapReal {
+            0%, 100% { transform: scaleY(1) scaleX(1); }
+            50% { transform: scaleY(0.4) scaleX(0.9); } /* Sayap menutup tajam */
+        }
+
+
+        /* ==========================================
+           KONTEN UTAMA (LINKTREE)
+           ========================================== */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        @keyframes floatEffect {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Container Foto Profil */
+        .profile-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #8a2be2;
+            margin: 0 auto 20px auto;
+            border: 3px solid #bf55ec;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 25px rgba(191, 85, 236, 0.4);
+            opacity: 0;
+            /* Muncul setelah koloni kelelawar utama lewat */
+            animation: superSmoothFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1s,
+                       floatEffect 4s ease-in-out infinite 2s;
+        }
+
+        .profile-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ANIMASI MUNCUL ULTRA-SMOOTH */
+        @keyframes superSmoothFadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+                filter: blur(4px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #f3e5f5;
+            text-shadow: 0 2px 10px rgba(191, 85, 236, 0.5);
+            opacity: 0;
+            animation: superSmoothFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.1s;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #b39ddb;
+            margin-bottom: 35px;
+            opacity: 0;
+            animation: superSmoothFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.2s;
+        }
+
+        /* Gaya Tombol Link (Glassmorphism) */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.06);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 18px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: superSmoothFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* JEDA MUNCUL TOMBOL BERGANTIAN */
+        .link-btn:nth-child(1) { animation-delay: 1.35s; }
+        .link-btn:nth-child(2) { animation-delay: 1.45s; }
+        .link-btn:nth-child(3) { animation-delay: 1.55s; }
+        .link-btn:nth-child(4) { animation-delay: 1.65s; }
+
+        .link-btn i {
+            font-size: 1.3rem;
+            position: absolute;
+            left: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .link-btn:hover, .link-btn:active {
+            background-color: rgba(138, 43, 226, 0.3);
+            border-color: #bf55ec;
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.5), 
+                        inset 0 0 15px rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.5px;
+        }
+
+        .link-btn:hover i, .link-btn:active i {
+            transform: scale(1.2);
+        }
+
+        .link-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 20%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: 0.75s;
+        }
+
+        .link-btn:hover::after {
+            left: 125%;
+        }
+
+        /* Footer Kecil */
+        .footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            animation: superSmoothFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.8s;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bat-cave">
+        <div class="bat" style="--start-x: 10vw; --delay: 0s;   --size: 45px; --flap-speed: 0.12s; --drift: 60px;  --max-op: 0.9; --blur: 0px;">🦇</div>
+        <div class="bat" style="--start-x: 45vw; --delay: 0.2s; --size: 42px; --flap-speed: 0.14s; --drift: -40px; --max-op: 0.8; --blur: 0px;">🦇</div>
+        <div class="bat" style="--start-x: 80vw; --delay: 0.1s; --size: 48px; --flap-speed: 0.11s; --drift: 50px;  --max-op: 0.9; --blur: 0px;">🦇</div>
+        
+        <div class="bat" style="--start-x: 25vw; --delay: 0.15s; --size: 32px; --flap-speed: 0.16s; --drift: -30px; --max-op: 0.7; --blur: 1px;">🦇</div>
+        <div class="bat" style="--start-x: 60vw; --delay: 0.35s; --size: 35px; --flap-speed: 0.15s; --drift: 40px;  --max-op: 0.7; --blur: 1px;">🦇</div>
+        <div class="bat" style="--start-x: 90vw; --delay: 0.05s; --size: 30px; --flap-speed: 0.17s; --drift: -50px; --max-op: 0.6; --blur: 1px;">🦇</div>
+        <div class="bat" style="--start-x: 5vw;  --delay: 0.4s;  --size: 34px; --flap-speed: 0.14s; --drift: 30px;  --max-op: 0.7; --blur: 1px;">🦇</div>
+
+        <div class="bat" style="--start-x: 15vw; --delay: 0.3s;  --size: 20px; --flap-speed: 0.22s; --drift: -20px; --max-op: 0.4; --blur: 2px;">🦇</div>
+        <div class="bat" style="--start-x: 35vw; --delay: 0.08s; --size: 22px; --flap-speed: 0.20s; --drift: 45px;  --max-op: 0.5; --blur: 2px;">🦇</div>
+        <div class="bat" style="--start-x: 50vw; --delay: 0.5s;  --size: 18px; --flap-speed: 0.25s; --drift: -10px; --max-op: 0.4; --blur: 3px;">🦇</div>
+        <div class="bat" style="--start-x: 70vw; --delay: 0.25s; --size: 24px; --flap-speed: 0.19s; --drift: 35px;  --max-op: 0.5; --blur: 2px;">🦇</div>
+        <div class="bat" style="--start-x: 85vw; --delay: 0.45s; --size: 16px; --flap-speed: 0.26s; --drift: -35px; --max-op: 0.3; --blur: 3px;">🦇</div>
+        
+        <div class="bat" style="--start-x: 20vw; --delay: 0.65s; --size: 38px; --flap-speed: 0.13s; --drift: 50px;  --max-op: 0.8; --blur: 0px;">🦇</div>
+        <div class="bat" style="--start-x: 55vw; --delay: 0.7s;  --size: 28px; --flap-speed: 0.18s; --drift: -40px; --max-op: 0.6; --blur: 1px;">🦇</div>
+        <div class="bat" style="--start-x: 75vw; --delay: 0.6s;  --size: 44px; --flap-speed: 0.12s; --drift: -25px; --max-op: 0.8; --blur: 0px;">🦇</div>
+    </div>
+
+    <div class="container">
+        <div class="profile-container">
+            <img src="assets/image/logo-txt.png" alt="Logo Pasukan Ubi Ungu">
+        </div>
+        
+        <h1>😈 Pasukan Ubi Ungu 😈</h1>
+        <p class="subtitle">Temukan kami di media sosial</p>
+
+        <div class="links-wrapper">
+            <a href="https://x.com/PasukanUbiUngu" target="_blank" class="link-btn">
+                <i class="fa-brands fa-x-twitter"></i> X (Twitter)
+            </a>
+            <a href="https://www.tiktok.com/@pasukanubiungu_" target="_blank" class="link-btn">
+                <i class="fa-brands fa-tiktok"></i> TikTok
+            </a>
+            <a href="https://discord.gg/mAdAgfhUA" target="_blank" class="link-btn">
+                <i class="fa-brands fa-discord"></i> Discord
+            </a>
+            <a href="https://pasukan-ubi-ungu.github.io/pasukan-ubi-ungu/" target="_blank" class="link-btn">
+                <i class="fa-solid fa-globe"></i> Website Utama
+            </a>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Pasukan Ubi Ungu
+        </div>
+    </div>
+
+</body>
+</html>
