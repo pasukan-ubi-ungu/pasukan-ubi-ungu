@@ -30,14 +30,12 @@
       background: var(--bg);
       color: #333;
     }
-    /* Aturan umum untuk link, warna default putih (cocok untuk nav dan banner) */
     a {
       color: white; 
       text-decoration: none;
       transition: color 0.3s ease; 
     }
     a:hover {
-      /* color: orange;  */
       text-decoration: underline; 
     }
     
@@ -101,7 +99,6 @@
     .sci li a .fa-brands{transition: 0.25s; pointer-events: none;}
     .sci li a:hover .fa-brands{color: #fff; transform: scale(1.75) translateZ(50px);}
 
-
     /* Gallery Section */
     #gallery { padding: 80px 0; }
     #gallery .container > div { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; }
@@ -111,26 +108,62 @@
     /* Timeline Section */
     .timeline { display: flex; margin: 0 auto; flex-wrap: wrap; flex-direction: column; max-width: 700px; position: relative; }
     .timeline__content-title { font-weight: normal; font-size: 66px; margin: -10px 0 0 0; transition: 0.4s; padding: 0 10px; box-sizing: border-box; font-family: "Pathway Gothic One", sans-serif; color: #fff; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); }
-    .timeline__content-desc { margin: 0; font-size: 15px; box-sizing: border-box; color: rgba(255, 255, 255, 0.7); font-family: Cardo, serif; font-weight: normal; line-height: 25px; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); }
-    .timeline__content-desc a { color: #ad84db; font-weight: bold; } /* Membuat link di deskripsi timeline terlihat */
+    
+    /* Perbaikan pada Deskripsi Timeline agar sangat mudah dibaca */
+    .timeline__content-desc { 
+      margin: 10px 0 0 0; 
+      font-size: 15px; 
+      box-sizing: border-box; 
+      color: #f1ecf9; 
+      font-family: Cardo, serif; 
+      font-weight: normal; 
+      line-height: 25px; 
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.7); 
+      background: rgba(40, 20, 60, 0.55); 
+      padding: 12px 16px; 
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+      backdrop-filter: blur(3px);
+    }
+    .timeline__content-desc a { color: #ad84db; font-weight: bold; }
     .timeline:before { position: absolute; left: 50%; width: 2px; height: 100%; margin-left: -1px; content: ""; background: rgba(255, 255, 255, 0.07); }
-    .timeline-item { padding: 40px 0; /* opacity: 0.3;  filter: blur(2px); */ transition: 0.5s; box-sizing: border-box; width: calc(50% - 40px); display: flex; position: relative; /*transform: translateY(-80px);*/ text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); }
-    .timeline-item:before { content: attr(data-text); letter-spacing: 3px; width: 100%; position: absolute; color: rgba(255, 255, 255, 0.5); font-size: 13px; font-family: "Pathway Gothic One", sans-serif; border-left: 2px solid rgba(255, 255, 255, 0.5); top: 70%; margin-top: -5px; padding-left: 15px; /*opacity: 0;*/ right: calc(-100% - 56px); }
+    
+    .timeline-item { padding: 40px 0; transition: 0.5s; box-sizing: border-box; width: calc(50% - 40px); display: flex; position: relative; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); }
+    
+    /* Judul di samping (Khusus Tampilan Web/Desktop) */
+    .timeline-item:before { content: attr(data-text); letter-spacing: 2px; width: 100%; position: absolute; color: #ffffff; font-size: 16px; font-family: "Pathway Gothic One", sans-serif; border-left: 3px solid #ad84db; top: 70%; margin-top: -5px; padding-left: 15px; right: calc(-100% - 56px); text-shadow: 2px 2px 4px rgba(0,0,0,0.9); font-weight: bold; }
     .timeline-item:nth-child(even) { align-self: flex-end; }
-    .timeline-item:nth-child(even):before { right: auto; text-align: right; left: calc(-100% - 56px); padding-left: 0; border-left: none; border-right: 2px solid rgba(255, 255, 255, 0.5); padding-right: 15px; }
+    .timeline-item:nth-child(even):before { right: auto; text-align: right; left: calc(-100% - 56px); padding-left: 0; border-left: none; border-right: 3px solid #ad84db; padding-right: 15px; }
+    
     .timeline-item--active { opacity: 1; transform: translateY(0); filter: blur(0px); }
     .timeline-item--active:before { top: 50%; transition: 0.3s all 0.2s; opacity: 1; }
     .timeline-item--active .timeline__content-title { margin: -50px 0 20px 0; }
+    
+    /* Default Web: Judul di dalam kotak disembunyikan */
+    .timeline-card-title {
+      display: none; 
+    }
+
     .timeline__img { max-width: 100%; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4); cursor: pointer; transition: transform 0.3s ease; }
     .timeline__img:hover { transform: scale(1.05); }
-    .timeline-container { width: 100%; position: relative; padding: 80px 0; transition: 0.3s ease 0s; background-attachment: fixed; background-size: cover; }
+    
+    .timeline-container { 
+      width: 100%; 
+      position: relative; 
+      padding: 80px 0; 
+      transition: 0.3s ease 0s; 
+      background-attachment: fixed; 
+      background-size: cover; 
+      background-position: center;
+      background-repeat: no-repeat;
+    }
     .timeline-container:before { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(99, 99, 99, 0.8); content: ""; }
     .timeline-header { width: 100%; text-align: center; margin-bottom: 80px; position: relative; }
     .timeline-header__title { color: #fff; font-size: 46px; font-family: Cardo, serif; font-weight: normal; margin: 0; }
     .timeline-header__subtitle { color: rgba(255, 255, 255, 0.5); font-family: "Pathway Gothic One", sans-serif; font-size: 16px; letter-spacing: 5px; margin: 10px 0 0 0; font-weight: normal; }
     
     /* Modal Preview dengan Navigasi */
-    .image-modal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.9); display: flex; justify-content: center; align-items: center; }
+    .image-modal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; }
     .modal-content { display: block; margin: auto; max-width: 80%; max-height: 85vh; animation-name: zoom; animation-duration: 0.4s; }
     @keyframes zoom { from {transform: scale(0)} to {transform: scale(1)} }
     .close-button { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
@@ -142,7 +175,7 @@
     /* Footer */
     footer { text-align: center; padding: 10px 25px; color: #f6f1fb; font-size: 14px; background: #ad84db; }
     
-    /* Media Queries */
+    /* Media Queries untuk Mobile (HP) */
     @media (max-width: 768px) {
       .nav-links { position: absolute; top: 60px; right: 0; background: var(--primary); width: 100%; flex-direction: column; display: none; }
       .nav-links li { margin: 15px 0; text-align: center; }
@@ -154,7 +187,26 @@
       #gallery div img { width: 100%; height: 250px; }
       .timeline:before { left: 40px; }
       .timeline-item { align-self: baseline !important; width: 100%; padding: 0 30px 150px 80px; }
-      .timeline-item:before { left: 10px !important; padding: 0 !important; top: 50px; text-align: center !important; width: 60px; border: none !important; }
+      
+      /* DI HP: Sembunyikan judul samping */
+      .timeline-item:before { display: none !important; }
+      
+      /* DI HP: Tampilkan judul di dalam kotak (di atas gambar) */
+      .timeline-card-title {
+        display: block;
+        font-family: "Pathway Gothic One", sans-serif;
+        font-size: 20px;
+        letter-spacing: 1.5px;
+        color: #ffffff;
+        background: rgba(94, 58, 135, 0.85);
+        padding: 8px 14px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        border-left: 4px solid #ad84db;
+      }
+      
       .timeline-item:last-child { padding-bottom: 40px; }
       #contact { min-height: auto; padding: 60px 0; }
       .socialmedia { padding: 0 15px; }
@@ -213,41 +265,92 @@
       <h3 class="timeline-header__subtitle">JEJAK LANGKAH UBI UNGU</h3>
     </div>
     <div class="timeline">
+      
+      <!-- Item 1 -->
       <div class="timeline-item" data-text="COVER LAGU : MANTRA HUJAN">
         <div class="timeline__content">
-          <img class="timeline__img" src="assets/image/Kegiatan-1.jpg" />
+          <div class="timeline-card-title">COVER LAGU : MANTRA HUJAN</div>
+          <img class="timeline__img" src="assets/image/Kegiatan-1.jpg" alt="Kegiatan 1" />
           <h2 class="timeline__content-title">2025</h2>
           <p class="timeline__content-desc">Berawal dari orang-orang yang memiliki ketertarikan yang sama, kami berkumpul dan membentuk "Pasukan Ubi Ungu" dan di kegabutan ini kami mengcover lagu mantra hujan, dimana lagu tersebut adalah salah satu lagu yang disukai oleh Lily. <a href="https://x.com/Chand335544/status/1939320885145661749" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
         </div>
       </div>
+
+      <!-- Item 2 -->
       <div class="timeline-item" data-text="BERBAGI CHEESECAKE (ULTAH LILY KE-18)">
         <div class="timeline__content">
-          <img class="timeline__img" src="assets/image/Kegiatan-3.jpg" />
+          <div class="timeline-card-title">BERBAGI CHEESECAKE (ULTAH LILY KE-18)</div>
+          <img class="timeline__img" src="assets/image/Kegiatan-3.jpg" alt="Kegiatan 3" />
           <h2 class="timeline__content-title">2025</h2>
           <p class="timeline__content-desc">Merupakan hasil kolaborasi bersama teman-teman Hillaryours & lily oshi, berbagi dengan sesama dan menyebarkan kehangatan. <a href="https://x.com/Hillaryours_ID/status/1979741444794638747?s=20" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
         </div>
       </div>
+
+      <!-- Item 3 -->
       <div class="timeline-item" data-text="RELEASE LAGU: BERHENTI SEJENAK">
         <div class="timeline__content">
-          <img class="timeline__img" src="assets/image/Kegiatan-2.jpg" />
+          <div class="timeline-card-title">RELEASE LAGU: BERHENTI SEJENAK</div>
+          <img class="timeline__img" src="assets/image/Kegiatan-2.jpg" alt="Kegiatan 2" />
           <h2 class="timeline__content-title">2025</h2>
           <p class="timeline__content-desc">Merilis karya kolaborasi pertama, sebuah lagu yang menjadi #playLyst terfavorit. <a href="https://www.youtube.com/watch?v=6XnT20AWAww" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
         </div>
       </div>
+
+      <!-- Item 4 -->
       <div class="timeline-item" data-text="MERCH.VOL 1 : JERSEY #VIOLETTA">
         <div class="timeline__content">
-          <img class="timeline__img" src="assets/image/Kegiatan-4.jpg" />
+          <div class="timeline-card-title">MERCH.VOL 1 : JERSEY #VIOLETTA</div>
+          <img class="timeline__img" src="assets/image/Kegiatan-4.jpg" alt="Kegiatan 4" />
           <h2 class="timeline__content-title">2025</h2>
           <p class="timeline__content-desc">Release Merchandise pertama yang bertemakan #Violetta. <a href="https://x.com/PasukanUbiUngu/status/1993291600437690378/video/1" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
         </div>
       </div>
+
+      <!-- Item 5 -->
       <div class="timeline-item" data-text="BANNER THEATER SEMENTARA YOGYAKARTA">
         <div class="timeline__content">
-          <img class="timeline__img" src="assets/image/Kegiatan-5.jpg" />
+          <div class="timeline-card-title">BANNER THEATER SEMENTARA YOGYAKARTA</div>
+          <img class="timeline__img" src="assets/image/Kegiatan-5.jpg" alt="Kegiatan 5" />
           <h2 class="timeline__content-title">2026</h2>
-          <p class="timeline__content-desc">Membentangkan banner "PROUD OF HILLARY ABIGAIL. WE ALWAYS WILL" ketika event Theater Sementara 2026 di Yogyakarta<a href="https://x.com/Lily_JKT48/status/2074479522825802229?s=20" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
+          <p class="timeline__content-desc">Membentangkan banner "PROUD OF HILLARY ABIGAIL. WE ALWAYS WILL" ketika event Theater Sementara 2026 di Yogyakarta <a href="https://x.com/Lily_JKT48/status/2074479522825802229?s=20" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
         </div>
       </div>
+
+      <!-- Item 6 -->
+      <div class="timeline-item" data-text="PASUKAN UBI UNGU : Hillary Abigail's 19th Birthday Project">
+        <div class="timeline__content">
+          <div class="timeline-card-title">PASUKAN UBI UNGU : Hillary Abigail's 19th Birthday Project</div>
+          <img class="timeline__img" src="assets/image/Kegiatan-6.jpg" alt="Kegiatan 6" />
+          <h2 class="timeline__content-title">2026</h2>
+          <p class="timeline__content-desc">Berinisiatif untuk membuat projek dan meramaikan STS pertama Lily jkt48 sebagai member inti <a href="https://x.com/PasukanUbiUngu/status/2111291270329147693?a=sqAmWkaESESCTSkdwk0&s=20" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
+        </div>
+      </div>
+
+      <!-- Item 7 -->
+      <div class="timeline-item" data-text="RELEASE LAGU : INILAH SAATNYA">
+        <div class="timeline__content">
+          <div class="timeline-card-title">RELEASE LAGU : INILAH SAATNYA</div>
+          <img class="timeline__img" src="assets/image/Kegiatan-9.jpg" alt="Kegiatan 9" />
+          <h2 class="timeline__content-title">2026</h2>
+          <p class="timeline__content-desc">Kembali menceritakan perjalanan lily jkt48 kedalam sebuah lagu yang berjudul "Inilah Saatnya" <a href="https://www.youtube.com/watch?v=ptFJSz9ge-Y" target="_blank" rel="noopener noreferrer">Penasaran? bisa diklik disini.</a></p>
+        </div>
+      </div>
+
+      <!-- Item 8 -->
+      <div class="timeline-item" data-text="BIRTHDAY CAKE CAR & DIGITAL SIGNAGE">
+        <div class="timeline__content">
+          <div class="timeline-card-title">BIRTHDAY CAKE CAR & DIGITAL SIGNAGE</div>
+          <img class="timeline__img" src="assets/image/Kegiatan-8.png" alt="Kegiatan 8" />
+          <h2 class="timeline__content-title">2026</h2>
+          <p class="timeline__content-desc">
+            Membuat Birthday Cake Car dan juga Digital signage dalam rangka meramaikan STS pertama lily jkt48 
+            <a href="URL_LINK_PERTAMA_DISINI" target="_blank" rel="noopener noreferrer">disini</a> 
+            & 
+            <a href="URL_LINK_KEDUA_DISINI" target="_blank" rel="noopener noreferrer">disini</a>.
+          </p>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -265,7 +368,7 @@
           <a href="https://line.me/ti/p/pasukanubiungu" class="line" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-line"></i></a>
         </li>
       </ul> 
-      <div>
+      </div>
   </section>
 
   <section id="gallery">
@@ -285,7 +388,7 @@
       <span class="close-button">&times;</span>
       <a class="prev-btn">&#10094;</a>
       <a class="next-btn">&#10095;</a>
-      <img class="modal-content" id="preview-image">
+      <img class="modal-content" id="preview-image" alt="Preview">
   </div>
   
   <footer>© 2026 Pasukan Ubi Ungu | Made with 💜 (dibaca : Love sampe mati)</footer>
@@ -309,23 +412,29 @@
         $.fn.timeline = function () {
             var selectors = { id: $(this), item: $(this).find(".timeline-item"), activeClass: "timeline-item--active", img: ".timeline__img" };
             if (selectors.item.length === 0) return;
+            
             selectors.item.eq(0).addClass(selectors.activeClass);
-            selectors.id.css( "background-image", "url(" + selectors.item.first().find(selectors.img).attr("src") + ")" );
-            var itemLength = selectors.item.length;
+            var firstImgSrc = selectors.item.first().find(selectors.img).attr("src");
+            if(firstImgSrc) {
+                selectors.id.css("background-image", "url(" + firstImgSrc + ")");
+            }
+
             $(window).scroll(function () {
-                var max, min;
                 var pos = $(this).scrollTop();
-                selectors.item.each(function (i) {
-                    min = $(this).offset().top;
-                    max = $(this).height() + $(this).offset().top;
-                    if (i === itemLength - 1 && pos + $(window).height() > min + $(this).height()) {
+                var windowHeight = $(window).height();
+                
+                selectors.item.each(function () {
+                    var min = $(this).offset().top;
+                    var max = $(this).height() + min;
+                    
+                    if (pos + windowHeight / 2 >= min && pos + windowHeight / 2 <= max) {
                         selectors.item.removeClass(selectors.activeClass);
                         $(this).addClass(selectors.activeClass);
-                        selectors.id.css("background-image", "url(" + $(this).find(selectors.img).attr("src") + ")");
-                    } else if (pos <= max - 40 && pos >= min) {
-                        selectors.id.css("background-image", "url(" + $(this).find(selectors.img).attr("src") + ")");
-                        selectors.item.removeClass(selectors.activeClass);
-                        $(this).addClass(selectors.activeClass);
+                        
+                        var imgSrc = $(this).find(selectors.img).attr("src");
+                        if (imgSrc) {
+                            selectors.id.css("background-image", "url(" + imgSrc + ")");
+                        }
                     }
                 });
             });
@@ -344,7 +453,6 @@
         const prevBtn = modal.querySelector('.prev-btn');
         const nextBtn = modal.querySelector('.next-btn');
 
-        // Logika untuk Galeri dengan Slider
         const galleryImages = document.querySelectorAll('#gallery div img');
         const galleryImageSources = Array.from(galleryImages).map(img => img.src);
         let currentIndex = 0;
@@ -366,7 +474,6 @@
             });
         });
 
-        // Logika untuk Timeline (Preview Tunggal)
         const timelineImages = document.querySelectorAll('.timeline__img');
         timelineImages.forEach(img => {
             img.addEventListener('click', function() {
@@ -378,7 +485,6 @@
             });
         });
 
-        // Fungsi Umum Modal
         function closeModal() {
             modal.style.display = 'none';
             isGallerySliderActive = false;
@@ -413,14 +519,12 @@
   <script src="vanilla-tilt.min.js"></script>
   
   <script>
-
     VanillaTilt.init(document.querySelectorAll(".sci li a"), {
         max: 30,
         speed: 400,
-        galre: true,
+        glare: true,
         "max-glare" : 1,
       });
-
 
     const sciList = document.querySelectorAll('.sci li');
     const contactSectionBg = document.querySelector('#contact');
@@ -430,7 +534,6 @@
             element.addEventListener('mouseenter', function() {
                 let color = element.getAttribute('data-color');
                 contactSectionBg.style.backgroundColor = color;
-              
                 element.classList.add('hover-active');
             });
 
@@ -440,7 +543,6 @@
             });
         });
     }
-</script>
-
+  </script>
 </body>
 </html>
