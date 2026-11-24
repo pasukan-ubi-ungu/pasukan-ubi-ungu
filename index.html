@@ -44,6 +44,15 @@
     .preloader-content { position: relative; z-index: 2; text-align: center; }
     #preloader img { max-width: 200px; animation: fadeIn 1s ease-in-out, pulse 2s infinite ease-in-out 1s; }
     .preloader-text { color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 1.5rem; letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; overflow: hidden; white-space: nowrap; border-right: 2px solid rgba(255, 255, 255, 0.75); width: 0; animation: typing 2s steps(13, end) 1.5s forwards, blink-cursor .75s step-end infinite; }
+    .preloader-progress { margin-top: 18px; display: flex; justify-content: center; }
+    #loaderVfx {
+      --sk-ink: #3d2457;
+      --sk-card: #ffffff;
+      --sk-pri: #ad84db;
+      --sk-acc: #f5a6da;
+      transform: scale(0.86);
+      transform-origin: center top;
+    }
     .police-tape { position: absolute; inset: 0; z-index: 1; opacity: 0.15; background: repeating-linear-gradient(45deg, var(--dark), var(--dark) 20px, var(--primary) 20px, var(--primary) 40px); animation: scroll-tape 3s linear infinite; }
     .preloader-hidden { opacity: 0; pointer-events: none; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -101,9 +110,55 @@
 
     /* Gallery Section */
     #gallery { padding: 80px 0; }
-    #gallery .container > div { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; }
-    #gallery div img { width: 400px; height: 300px; object-fit: cover; border: 2px solid var(--dark); border-radius: 13px; box-shadow: 4px 7px 7px 0px rgba(0,0,0,0.2); cursor: pointer; margin: 10px; transition: transform 400ms; }
-    #gallery div img:hover { transform: scale(1.03); }
+    #gallery .comic-gallery {
+      column-count: 4;
+      column-gap: 0;
+      font-size: 0;
+      line-height: 0;
+      padding: 6px;
+      border: 4px solid #24163a;
+      background:
+        radial-gradient(circle at 2px 2px, rgba(50, 30, 78, 0.26) 1.3px, transparent 1.5px) 0 0 / 14px 14px,
+        #fdfaf7;
+      box-shadow: 0 10px 0 rgba(36, 22, 58, 0.24);
+    }
+    #gallery .comic-gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      break-inside: avoid;
+      border: 4px solid #24163a;
+      background: #fff;
+      padding: 2px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 rgba(36, 22, 58, 0.28);
+      transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+      margin: 0;
+    }
+    #gallery .comic-gallery img:hover {
+      transform: translateY(-3px) scale(1.015) !important;
+      box-shadow: 8px 10px 0 rgba(36, 22, 58, 0.28);
+      filter: contrast(1.03) saturate(1.04);
+      z-index: 2;
+    }
+    #gallery .comic-gallery img:nth-child(1) { clip-path: polygon(0 0, 100% 0, 94% 100%, 0 100%); }
+    #gallery .comic-gallery img:nth-child(2) { clip-path: polygon(6% 0, 100% 0, 100% 100%, 0 100%); }
+    #gallery .comic-gallery img:nth-child(3) { clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%); }
+    #gallery .comic-gallery img:nth-child(4) { clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 92%); }
+    #gallery .comic-gallery img:nth-child(5) { clip-path: polygon(0 0, 100% 6%, 95% 100%, 0 100%); }
+    #gallery .comic-gallery img:nth-child(6) { clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%); }
+    #gallery .comic-gallery img:nth-child(7) { clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 92%); }
+    #gallery .comic-gallery img:nth-child(8) { clip-path: polygon(0 0, 94% 0, 100% 100%, 0 100%); }
+    #gallery .comic-gallery img:nth-child(9) { clip-path: polygon(0 7%, 100% 0, 100% 93%, 0 100%); }
+    #gallery .comic-gallery img:nth-child(10) { clip-path: polygon(0 0, 100% 0, 92% 100%, 0 95%); }
+    #gallery .comic-gallery img:nth-child(11) { clip-path: polygon(6% 0, 100% 0, 100% 100%, 0 94%); }
+    #gallery .comic-gallery img:nth-child(12) { clip-path: polygon(0 0, 100% 8%, 95% 100%, 0 100%); }
+    #gallery .comic-gallery img:nth-child(13) { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+    #gallery .comic-gallery img:nth-child(14) { clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%); }
+
+    @supports not (clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)) {
+      #gallery .comic-gallery img { clip-path: none !important; }
+    }
 
     /* Timeline Section */
     .timeline { display: flex; margin: 0 auto; flex-wrap: wrap; flex-direction: column; max-width: 700px; position: relative; }
@@ -184,7 +239,8 @@
       .banner h1 { font-size: 30px; }
       .home-grid-2 { grid-template-columns: 1fr; }
       .home-media img { height: 260px; }
-      #gallery div img { width: 100%; height: 250px; }
+      #gallery .comic-gallery { column-count: 2; padding: 4px; }
+      #gallery .comic-gallery img { clip-path: none !important; }
       .timeline:before { left: 40px; }
       .timeline-item { align-self: baseline !important; width: 100%; padding: 0 30px 150px 80px; }
       
@@ -213,6 +269,10 @@
       .sci li a { width: 80px; height: 80px; margin: 10px; font-size: 2.5em;}
       .sci li:hover::before, .sci li.hover-active::before { transform: translate(-50%, calc(-50% + 80px)); }
     }
+
+    @media (max-width: 540px) {
+      #gallery .comic-gallery { column-count: 1; }
+    }
   </style>
 </head>
 <body>
@@ -221,6 +281,9 @@
     <div class="preloader-content">
       <img src="assets/image/logo-depan.png" alt="Loading Logo">
       <h3 class="preloader-text">Ubi Ungu Area.</h3>
+      <div class="preloader-progress">
+        <sakuga-progress id="loaderVfx" label="Loading Pasukan Ubi Ungu" done-label="Ready ✓"></sakuga-progress>
+      </div>
     </div>
   </div>
 
@@ -344,9 +407,9 @@
           <h2 class="timeline__content-title">2026</h2>
           <p class="timeline__content-desc">
             Membuat Birthday Cake Car dan juga Digital signage dalam rangka meramaikan STS pertama lily jkt48 
-            <a href="URL_LINK_PERTAMA_DISINI" target="_blank" rel="noopener noreferrer">disini</a> 
+            <a href="https://x.com/Lily_JKT48/status/2112945104160014557?a=UWeZC3ykzz_NGNcXIlE&s=20" target="_blank" rel="noopener noreferrer">disini</a> 
             & 
-            <a href="URL_LINK_KEDUA_DISINI" target="_blank" rel="noopener noreferrer">disini</a>.
+            <a href="https://x.com/Lily_JKT48/status/2113565921516405097?a=yWr1ChCVH8OmlYqOAv8&s=20" target="_blank" rel="noopener noreferrer">disini</a>.
           </p>
         </div>
       </div>
@@ -374,7 +437,7 @@
   <section id="gallery">
     <div class="container">
       <h2>GALLERY</h2>
-      <div>
+      <div class="comic-gallery">
         <img src="assets/image/1000006454.png" alt="Gallery Image 1">
         <img src="assets/image/1000006455.png" alt="Gallery Image 2">
         <img src="assets/image/1000006456.png" alt="Gallery Image 3">
@@ -409,19 +472,43 @@
   <script>
     window.addEventListener('load', function() {
       const preloader = document.getElementById('preloader');
-      setTimeout(() => { preloader.classList.add('preloader-hidden'); }, 4000); 
-      setTimeout(() => { preloader.style.display = 'none'; }, 4800); 
+      const loaderVfx = document.getElementById('loaderVfx');
+
+      function finishPreloader() {
+        preloader.classList.add('preloader-hidden');
+        setTimeout(() => {
+          preloader.style.display = 'none';
+          document.querySelectorAll('canvas.sakuga-fx').forEach((canvas) => canvas.remove());
+        }, 780);
+      }
+
+      if (!loaderVfx || typeof loaderVfx.set !== 'function') {
+        setTimeout(finishPreloader, 3200);
+        return;
+      }
+
+      if (typeof loaderVfx.reset === 'function') loaderVfx.reset();
+      let value = 0;
+      const timer = setInterval(() => {
+        value = Math.min(1, value + (Math.random() * 0.17 + 0.07));
+        loaderVfx.set(value);
+        if (value >= 1) {
+          clearInterval(timer);
+          setTimeout(finishPreloader, 550);
+        }
+      }, 320);
     });
     function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }
   </script>
   
+  <script src="https://cdn.jsdelivr.net/gh/finktheartist/sakuga-vfx@main/progress/progress.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
     (function ($) {
         $.fn.timeline = function () {
             var selectors = { id: $(this), item: $(this).find(".timeline-item"), activeClass: "timeline-item--active", img: ".timeline__img" };
             if (selectors.item.length === 0) return;
-            
+
             selectors.item.eq(0).addClass(selectors.activeClass);
             var firstImgSrc = selectors.item.first().find(selectors.img).attr("src");
             if(firstImgSrc) {
@@ -462,7 +549,7 @@
         const prevBtn = modal.querySelector('.prev-btn');
         const nextBtn = modal.querySelector('.next-btn');
 
-        const galleryImages = document.querySelectorAll('#gallery div img');
+        const galleryImages = document.querySelectorAll('#gallery .comic-gallery img');
         const galleryImageSources = Array.from(galleryImages).map(img => img.src);
         let currentIndex = 0;
         let isGallerySliderActive = false;
@@ -552,6 +639,7 @@
             });
         });
     }
+
   </script>
 </body>
 </html>
